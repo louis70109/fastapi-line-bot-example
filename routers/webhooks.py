@@ -4,7 +4,8 @@ from typing import List, Optional
 from fastapi import APIRouter, HTTPException, Header, Request
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import TextMessage, MessageEvent, TextSendMessage
+from linebot.models import TextMessage, MessageEvent, TextSendMessage, StickerMessage, \
+    StickerSendMessage
 from pydantic import BaseModel
 
 line_bot_api = LineBotApi(os.getenv('LINE_CHANNEL_ACCESS_TOKEN'))
@@ -37,4 +38,13 @@ def message_text(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text)
+    )
+
+
+@handler.add(MessageEvent, message=StickerMessage)
+def sticker_text(event):
+    # Judge condition
+    line_bot_api.reply_message(
+        event.reply_token,
+        StickerSendMessage(package_id='6136', sticker_id='10551379')
     )
