@@ -1,4 +1,4 @@
-# Fastapi Example
+# Fastapi Example for LINE Bot
 
 ## Prerequisite
 
@@ -12,11 +12,13 @@ pip install -r requirements.txt
 python main.py
 ```
 
-#### Or
+#### OR
 
 ```shell
 docker-compose up
 ```
+
+## Testing
 
 ```shell
 curl http://localhost:5000/
